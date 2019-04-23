@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import cn.finalteam.rxgalleryfinal.imageloader.rotate.RotateTransformation;
 import cn.finalteam.rxgalleryfinal.ui.widget.FixImageView;
@@ -37,28 +38,13 @@ public class GlideImageLoader implements AbsImageLoader {
 //                .diskCacheStrategy(DiskCacheStrategy.NONE)
 //                .into(imageView);
 
-        if (isGif) {
-            Glide
-                    .with(context)
-                    .load(path)
-                    .placeholder(defaultDrawable)
-                    .error(defaultDrawable)
-                    .override(width, height)
-                    .crossFade()
-                    .transform(new RotateTransformation(context, rotate))
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .into(imageView);
-        } else {
-            Glide
-                    .with(context)
-                    .load(path)
-                    .asBitmap()
-                    .placeholder(defaultDrawable)
-                    .error(defaultDrawable)
-                    .override(width, height)
-                    .transform(new RotateTransformation(context, rotate))
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .into(imageView);
-        }
+
+        RequestOptions options = new RequestOptions()
+                .placeholder(defaultDrawable)
+                .error(defaultDrawable)
+                .transform(new RotateTransformation(context, rotate))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(context).load(path).apply(options).into(imageView);
+
     }
 }
