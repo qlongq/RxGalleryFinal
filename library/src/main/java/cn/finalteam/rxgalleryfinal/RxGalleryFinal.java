@@ -307,6 +307,7 @@ public class RxGalleryFinal {
         RxBus.getDefault().add(disposable);
 
         Intent intent = new Intent(context, MediaActivity.class);
+        intent.setExtrasClassLoader(Configuration.class.getClassLoader());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle bundle = new Bundle();
         bundle.setClassLoader(Configuration.class.getClassLoader());
