@@ -34,8 +34,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             bundle = intent.getExtras();
         }
 
-
         if (savedInstanceState != null) {
+            savedInstanceState.setClassLoader(Configuration.class.getClassLoader());
             mConfiguration = savedInstanceState.getParcelable(EXTRA_CONFIGURATION);
         }
         if (mConfiguration == null && bundle != null) {
