@@ -142,6 +142,7 @@ public class MediaGridFragment extends BaseFragment implements MediaGridView, Re
     public static MediaGridFragment newInstance(Configuration configuration) {
         MediaGridFragment fragment = new MediaGridFragment();
         Bundle bundle = new Bundle();
+        bundle.setClassLoader(Configuration.class.getClassLoader());
         bundle.putParcelable(EXTRA_CONFIGURATION, configuration);
         fragment.setArguments(bundle);
         return fragment;

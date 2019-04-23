@@ -51,6 +51,7 @@ public abstract class BaseFragment extends Fragment {
         Bundle argsBundle = getArguments();
 
         if (savedInstanceState != null) {
+            savedInstanceState.setClassLoader(Configuration.class.getClassLoader());
             mConfiguration = savedInstanceState.getParcelable(EXTRA_CONFIGURATION);
         }
         if (mConfiguration == null && argsBundle != null) {
@@ -198,6 +199,7 @@ public abstract class BaseFragment extends Fragment {
      */
     private void restoreState() {
         if (mSaveDataBundle != null) {
+            mSaveDataBundle.setClassLoader(Configuration.class.getClassLoader());
             mConfiguration = mSaveDataBundle.getParcelable(EXTRA_CONFIGURATION);
             onRestoreState(mSaveDataBundle);
         }
@@ -213,6 +215,7 @@ public abstract class BaseFragment extends Fragment {
      */
     private Bundle saveState() {
         Bundle state = new Bundle();
+        state.setClassLoader(Configuration.class.getClassLoader());
         state.putParcelable(EXTRA_CONFIGURATION, mConfiguration);
         onSaveState(state);
         return state;

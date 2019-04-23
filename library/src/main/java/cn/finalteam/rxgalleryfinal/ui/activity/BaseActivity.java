@@ -94,14 +94,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         printActivityLife("onSaveInstanceState");
-        outState.putParcelable(EXTRA_CONFIGURATION, mConfiguration);
+        if (outState!=null) {
+            outState.setClassLoader(Configuration.class.getClassLoader());
+            outState.putParcelable(EXTRA_CONFIGURATION, mConfiguration);
+        }
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         printActivityLife("onRestoreInstanceState");
-        mConfiguration = savedInstanceState.getParcelable(EXTRA_CONFIGURATION);
+        if (savedInstanceState!=null) {
+            savedInstanceState.setClassLoader(Configuration.class.getClassLoader());
+            mConfiguration = savedInstanceState.getParcelable(EXTRA_CONFIGURATION);
+        }
     }
 
     public abstract void findViews();

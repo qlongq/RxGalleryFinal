@@ -51,6 +51,7 @@ public class MediaPreviewFragment extends BaseFragment implements ViewPager.OnPa
     public static MediaPreviewFragment newInstance(Configuration configuration, int position) {
         MediaPreviewFragment fragment = new MediaPreviewFragment();
         Bundle bundle = new Bundle();
+        bundle.setClassLoader(Configuration.class.getClassLoader());
         bundle.putParcelable(EXTRA_CONFIGURATION, configuration);
         bundle.putInt(EXTRA_PAGE_INDEX, position);
         fragment.setArguments(bundle);

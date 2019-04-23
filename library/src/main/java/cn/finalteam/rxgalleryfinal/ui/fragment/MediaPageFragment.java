@@ -58,7 +58,7 @@ public class MediaPageFragment extends BaseFragment implements ViewPager.OnPageC
         bundle.putParcelable(EXTRA_CONFIGURATION, configuration);
         bundle.putParcelableArrayList(EXTRA_MEDIA_LIST, list);
         bundle.putInt(EXTRA_ITEM_CLICK_POSITION, position);
-        bundle.setClassLoader(Configuration.class.getClass().getClassLoader());
+        bundle.setClassLoader(Configuration.class.getClassLoader());
         fragment.setArguments(bundle);
         return fragment;
     }

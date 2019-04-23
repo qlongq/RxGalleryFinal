@@ -309,6 +309,7 @@ public class RxGalleryFinal {
         Intent intent = new Intent(context, MediaActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle bundle = new Bundle();
+        bundle.setClassLoader(Configuration.class.getClassLoader());
         bundle.putParcelable(MediaActivity.EXTRA_CONFIGURATION, configuration);
         intent.putExtras(bundle);
         context.startActivity(intent);
